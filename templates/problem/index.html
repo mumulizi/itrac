@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://v2.bootcss.com/examples/justified-nav.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>故障跟踪系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 60px;
+      }
+
+      /* Custom container */
+      .container {
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+      .container > hr {
+        margin: 60px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 80px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 100px;
+        line-height: 1;
+      }
+      .jumbotron .lead {
+        font-size: 24px;
+        line-height: 1.25;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+
+
+      /* Customize the navbar links to be fill the entire space of the .navbar */
+      .navbar .navbar-inner {
+        padding: 0;
+      }
+      .navbar .nav {
+        margin: 0;
+        display: table;
+        width: 100%;
+      }
+      .navbar .nav li {
+        display: table-cell;
+        width: 1%;
+        float: none;
+      }
+      .navbar .nav li a {
+        font-weight: bold;
+        text-align: center;
+        border-left: 1px solid rgba(255,255,255,.75);
+        border-right: 1px solid rgba(0,0,0,.1);
+      }
+      .navbar .nav li:first-child a {
+        border-left: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      .navbar .nav li:last-child a {
+        border-right: 0;
+        border-radius: 0 3px 3px 0;
+      }
+    </style>
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+
+
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="https://v2.bootcss.com/assets/ico/favicon.png">
+  <style></style></head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="masthead">
+        <h3 class="muted">Rocen故障跟踪系统</h3>
+        <div class="navbar">
+{#          <div class="navbar-inner">#}
+{#            <div class="container">#}
+{#              <ul class="nav">#}
+{#                <li class="active"><a href="https://v2.bootcss.com/examples/justified-nav.html#">Home</a></li>#}
+{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">Projects</a></li>#}
+{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">Services</a></li>#}
+{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">Downloads</a></li>#}
+{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">About</a></li>#}
+{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">Contact</a></li>#}
+{#              </ul>#}
+{#            </div>#}
+{#          </div>#}
+        </div><!-- /.navbar -->
+      </div>
+
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>IT故障跟踪系统</h1>
+        <p class="lead">欢迎登录若森故障跟踪系统，请选择以下两大模块“增加故障”或“查询故障”</p>
+        <a class="btn btn-large btn-success " data-toggle="modal" data-target="#myModal"  title="Add Cron">新增故障</a>
+        <a class="btn btn-large btn-success" href="{% url 'search' %}">查询故障</a>
+      </div>
+
+      <hr>
+
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <div class="span4">
+          <h2>一周故障</h2>
+          <p>此处展示最近一周出现的故障汇总</p>
+          <p><a class="btn" href="{% url 'week' %}">View details »</a></p>
+        </div>
+        <div class="span4">
+          <h2>一月故障</h2>
+          <p>此处展示最近一个月出现的故障 </p>
+          <p><a class="btn" href="{% url 'month' %}">View details »</a></p>
+       </div>
+        <div class="span4">
+          <h2>常见故障</h2>
+          <p>此处展示TOP10最常见的故障列表.</p>
+          <p><a class="btn" href="#">View details »</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>© Company 2018</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+
+    <div style="display: none;" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					新增故障
+				</h4>
+			</div>
+			<div class="modal-body">
+				<h3>Add Problem</h3>
+
+	<form id="register-form" method="POST" action="{% url 'problem_index' %}" class="form-horizontal"> {% csrf_token %}
+  <div class="control-group">
+
+
+        <div class="input-group">
+            <span class="input-group-addon control-label" for="host_name">主机名:</span>
+            <input type="text" class="form-control" style="width: 39%" id="inputhostname" name="hostname" placeholder="主机名">
+       </div>
+
+
+  </div>
+  <div style="padding: 11px 0px" class="control-group">
+      <div class="input-group">
+            <span for="ip_address" class="control-label input-group-addon">IP地址:</span>
+            <input type="text" class="form-control" style="width: 37%" id="inputipaddress" name="ipaddress" placeholder="192.168.1.1">
+       </div>
+
+  </div>
+    <div class="control-group">
+        <div class="input-group">
+            <span class="input-group-addon control-label" for="problem_user">报修人员:</span>
+            <input type="text" class="form-control" style="width: 40%" id="inputproblemuser" name="problem_user" placeholder="李红星">
+       </div>
+
+  </div>
+   <div style="padding: 11px 0px" class="control-group">
+       <div class="input-group">
+            <span class="input-group-addon control-label" for="problem_time">报修时间:</span>
+           <input name="problem_time" type="datetime-local" id="inputproblemtime" >
+{#            <input type="text" class="form-control" style="width: 36.5%" id="inputproblemtime" name="problem_time" placeholder="2018/01/26">#}
+       </div>
+
+  </div>
+    <div class="control-group">
+        <div class="input-group">
+            <span class="input-group-addon control-label" for="issue">具体问题:</span>
+            <textarea type="text" class="form-control" style="width: 36%" id="inputissue" name="issue" placeholder="电脑蓝屏"></textarea>
+       </div>
+
+  </div>
+
+
+  <div style="padding: 11px 0px" class="control-group">
+       <div class="input-group">
+            <span class="input-group-addon control-label" for="resolve">解决办法:</span>
+            <textarea type="text" class="form-control" style="width: 38%" id="inputresolve" name="resolve" placeholder="软件冲突卸载软件"></textarea>
+       </div>
+  </div>
+
+  <div class="control-group">
+        <div class="input-group">
+            <span class="input-group-addon control-label" for="status">是否解决:</span>
+            <select name="status">
+              <option value="yes">已解决</option>
+              <option value="no">未解决</option>
+              <option value="wait">待观察</option>
+            </select>
+       </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-info" >Save Cron</button>
+    </div>
+  </div>
+</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+{#    <script src="/static/js/bootstrap-alert.js"></script>#}
+{#    <script src="/static/js/bootstrap-modal.js"></script>#}
+    <script src="/static/js/bootstrap-dropdown.js"></script>
+    <script src="/static/js/bootstrap-scrollspy.js"></script>
+    <script src=/static/js/bootstrap-tab.js"></script>
+    <script src="/static/js/bootstrap-tooltip.js"></script>
+    <script src="/static/js/bootstrap-popover.js"></script>
+    <script src="/static/js/bootstrap-button.js"></script>
+    <script src="/static/js/bootstrap-collapse.js"></script>
+    <script src="/static/js/bootstrap-carousel.js"></script>
+    <script src="/static/js/bootstrap-typeahead.js"></script>
+
+  
+
+<div style="position: static; display: none; width: 0px; height: 0px; border: none; padding: 0px; margin: 0px;"><div id="trans-tooltip"><div id="tip-left-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-left-top.png&quot;);"></div><div id="tip-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-top.png&quot;) repeat-x;"></div><div id="tip-right-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-right-top.png&quot;);"></div><div id="tip-right" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-right.png&quot;) repeat-y;"></div><div id="tip-right-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-right-bottom.png&quot;);"></div><div id="tip-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-bottom.png&quot;) repeat-x;"></div><div id="tip-left-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-left-bottom.png&quot;);"></div><div id="tip-left" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-left.png&quot;);"></div><div id="trans-content"></div></div><div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-bottom.png&quot;);"></div><div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-top.png&quot;);"></div></div></body></html>
