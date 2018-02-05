@@ -2,20 +2,18 @@
 <!-- saved from url=(0050)https://v2.bootcss.com/examples/justified-nav.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <title>故障跟踪系统</title>
+    {% block title %} <title>故障跟踪系统</title> {% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
     <link href="/static/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
+    <style>
       body {
-        padding-top: 20px;
-        padding-bottom: 60px;
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
-
-      /* Custom container */
+            /* Custom container */
       .container {
         margin: 0 auto;
         max-width: 1000px;
@@ -23,14 +21,13 @@
       .container > hr {
         margin: 60px 0;
       }
-
       /* Main marketing message and sign up button */
       .jumbotron {
         margin: 80px 0;
         text-align: center;
       }
       .jumbotron h1 {
-        font-size: 100px;
+        font-size: 60px;
         line-height: 1;
       }
       .jumbotron .lead {
@@ -42,43 +39,7 @@
         padding: 14px 24px;
       }
 
-      /* Supporting marketing content */
-      .marketing {
-        margin: 60px 0;
-      }
-      .marketing p + h4 {
-        margin-top: 28px;
-      }
 
-
-      /* Customize the navbar links to be fill the entire space of the .navbar */
-      .navbar .navbar-inner {
-        padding: 0;
-      }
-      .navbar .nav {
-        margin: 0;
-        display: table;
-        width: 100%;
-      }
-      .navbar .nav li {
-        display: table-cell;
-        width: 1%;
-        float: none;
-      }
-      .navbar .nav li a {
-        font-weight: bold;
-        text-align: center;
-        border-left: 1px solid rgba(255,255,255,.75);
-        border-right: 1px solid rgba(0,0,0,.1);
-      }
-      .navbar .nav li:first-child a {
-        border-left: 0;
-        border-radius: 3px 0 0 3px;
-      }
-      .navbar .nav li:last-child a {
-        border-right: 0;
-        border-radius: 0 3px 3px 0;
-      }
     </style>
     <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -87,41 +48,47 @@
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="https://v2.bootcss.com/assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="https://v2.bootcss.com/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="https://v2.bootcss.com/assets/ico/favicon.png">
   <style></style></head>
 
   <body>
-
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+         <ul class="nav navbar-nav gct">
+             <li style="padding-right: 50px;color: #ffffff"> <a href="{% url 'problem_index' %}" style="color: #ffffff;text-align: left"><b style="color: #fffff0">故障跟踪系统</b></a></li>
+{#             <li style="padding-left: 50px;color: #ffffff"><b style="color: #fffff0">故障跟踪系统</b><b style="text-align: left">123</b></li>#}
+           </ul>
+		  <div class="nav-collapse collapse">
+		  <ul class="nav pull-right">
+			<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> {{user.username}} <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+{#			<li><a href="{% url aop.views.edituser user.id %}"><i class="icon-user"></i> 个人资料</a></li>#}
+			{#<li><a href="#"><i class="icon-user"></i> 个人资料</a></li>#}
+			<li class="divider"></li>
+			<li><a href="{% url 'logout' %}"><i class="icon-off"></i> 注销</a></li> </ul> </li>
+		  </ul>
+		  </div>
+        </div>
+      </div>
+    </div>
+	<hr>
     <div class="container">
 
-      <div class="masthead">
-        <h3 class="muted">Rocen故障跟踪系统</h3>
-        <div class="navbar">
-{#          <div class="navbar-inner">#}
-{#            <div class="container">#}
-{#              <ul class="nav">#}
-{#                <li class="active"><a href="https://v2.bootcss.com/examples/justified-nav.html#">Home</a></li>#}
-{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">Projects</a></li>#}
-{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">Services</a></li>#}
-{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">Downloads</a></li>#}
-{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">About</a></li>#}
-{#                <li><a href="https://v2.bootcss.com/examples/justified-nav.html#">Contact</a></li>#}
-{#              </ul>#}
-{#            </div>#}
-{#          </div>#}
-        </div><!-- /.navbar -->
-      </div>
+
 
       <!-- Jumbotron -->
+      {% block body %}
       <div class="jumbotron">
         <h1>IT故障跟踪系统</h1>
         <p class="lead">欢迎登录若森故障跟踪系统，请选择以下两大模块“增加故障”或“查询故障”</p>
         <a class="btn btn-large btn-success " data-toggle="modal" data-target="#myModal"  title="Add Cron">新增故障</a>
         <a class="btn btn-large btn-success" href="{% url 'search' %}">查询故障</a>
       </div>
-
+       {% endblock %}
       <hr>
 
       <!-- Example row of columns -->
@@ -139,6 +106,9 @@
         <div class="span4">
           <h2>常见故障</h2>
           <p>此处展示TOP10最常见的故障列表.</p>
+             <input id="fileImage" type="file" size="30" name="fileselect[]" multiple />
+{#            <input type="file" name="pic" id="pic" accept="image/*" class="upload-input">#}
+
           <p><a class="btn" href="#">View details »</a></p>
         </div>
       </div>
@@ -152,7 +122,8 @@
     </div> <!-- /container -->
 
 
-
+    {% block model %}
+    {#style="display: none;" 未加这个样式的时候这个模态框总是遮挡住正常该显示的页面，按钮无法按，F12可以看见模态框的阴影。加上后就不显示了#}
     <div style="display: none;" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -241,7 +212,7 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
-
+{% endblock %}
 
 
     <!-- Le javascript
@@ -251,15 +222,16 @@
     <script src="/static/js/bootstrap.js"></script>
 {#    <script src="/static/js/bootstrap-alert.js"></script>#}
 {#    <script src="/static/js/bootstrap-modal.js"></script>#}
-    <script src="/static/js/bootstrap-dropdown.js"></script>
+{#    <script src="/static/js/bootstrap-dropdown.js"></script>#}
     <script src="/static/js/bootstrap-scrollspy.js"></script>
-    <script src=/static/js/bootstrap-tab.js"></script>
+{#    <script src=/static/js/bootstrap-tab.js"></script>#}
     <script src="/static/js/bootstrap-tooltip.js"></script>
     <script src="/static/js/bootstrap-popover.js"></script>
     <script src="/static/js/bootstrap-button.js"></script>
     <script src="/static/js/bootstrap-collapse.js"></script>
     <script src="/static/js/bootstrap-carousel.js"></script>
     <script src="/static/js/bootstrap-typeahead.js"></script>
+    <script src="/static/js/model-get-text.js"></script>
 
   
 

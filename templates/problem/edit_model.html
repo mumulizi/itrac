@@ -1,0 +1,92 @@
+<!-- 让include引用的页面，因为故障列表和周、月故障列表是一样的前端页面，只有一点不同，没必要每个页面都写一个 -->
+{#style="display: none;" 未加这个样式的时候这个模态框总是遮挡住正常该显示的页面，按钮无法按，F12可以看见模态框的阴影。加上后就不显示了#}
+<div style="display: none;" class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					编辑
+				</h4>
+			</div>
+			<div class="modal-body">
+            <h3>编辑故障</h3>
+	<form id="register-form" method="POST" action="{% url 'edit' %}" class="form-horizontal"> {% csrf_token %}
+   <div  hidden="hidden" class="control-group">
+        <div class="input-group">
+            <span class="input-group-addon control-label" for="id">故障id:</span>
+            <input type="text" class="form-control" style="width: 39%" id="inputid" name="id">
+       </div>
+  </div>
+
+  <div class="control-group">
+        <div class="input-group">
+            <span class="input-group-addon control-label" for="host_name">主机名:</span>
+            <input type="text" class="form-control" style="width: 39%" id="inputhostname" name="hostname" placeholder="主机名">
+       </div>
+  </div>
+  <div style="padding: 11px 0px" class="control-group">
+      <div class="input-group">
+            <span for="ip_address" class="control-label input-group-addon">IP地址:</span>
+            <input type="text" class="form-control" style="width: 37%" id="inputipaddress" name="ipaddress" placeholder="192.168.1.1">
+       </div>
+
+  </div>
+    <div class="control-group">
+        <div class="input-group">
+            <span class="input-group-addon control-label" for="problem_user">报修人员:</span>
+            <input type="text" class="form-control" style="width: 40%" id="inputproblemuser" name="problem_user" placeholder="李红星">
+       </div>
+
+  </div>
+   <div style="padding: 11px 0px" class="control-group">
+       <div class="input-group">
+            <span class="input-group-addon control-label" for="problem_time">报修时间:</span>
+           <input name="problem_time" type="datetime-local" id="inputproblemtime" >
+{#            <input type="text" class="form-control" style="width: 36.5%" id="inputproblemtime" name="problem_time" placeholder="2018/01/26">#}
+       </div>
+
+  </div>
+    <div class="control-group">
+        <div class="input-group">
+            <span class="input-group-addon control-label" for="issue">具体问题:</span>
+            <textarea type="text" class="form-control" style="width: 36%" id="inputissue" name="issue" placeholder="电脑蓝屏"></textarea>
+       </div>
+
+  </div>
+
+
+  <div style="padding: 11px 0px" class="control-group">
+       <div class="input-group">
+            <span class="input-group-addon control-label" for="resolve">解决办法:</span>
+            <textarea type="text" class="form-control" style="width: 38%" id="inputresolve" name="resolve" placeholder="软件冲突卸载软件"></textarea>
+       </div>
+</div>
+
+  <div class="control-group">
+        <div class="input-group">
+            <span class="input-group-addon control-label" for="status">是否解决:</span>
+            <select name="status">
+              <option value="yes">已解决</option>
+              <option value="no">未解决</option>
+              <option value="wait">待观察</option>
+            </select>
+       </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-info" >Save</button>
+    </div>
+  </div>
+</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>

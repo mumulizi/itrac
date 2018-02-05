@@ -7,6 +7,9 @@ from problem import models
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from utils import WAMAPage
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login as user_login, logout as user_logout
+from django.contrib.auth.decorators import login_required
 
 import time
 
@@ -14,6 +17,32 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+def login(request):
+    if request.method == 'POST':
+        #根据django自带的用户认证取出数据
+        user = authenticate(username=request.POST.get('username'),
+                            password=request.POST.get('password'))
+        if user is not None:
+            #使用自带认证登录
+            user_login(request,user)
+            #登录成功返回首页
+            username = request.POST.get('username')
+            return HttpResponseRedirect('/problem/')
+        else:
+            #登录失败
+            login_err = "Wrong username or password!"
+            #返回错误消息
+            return render(request, 'login.html', {'login_err':login_err})
+    #如果是get
+    return render(request, 'login.html')
+#退出返回登录页
+def logout(request):
+    user_logout(request)
+    return HttpResponseRedirect('/problem/')
+
+
+
+@login_required(login_url='/login/')
 def index(request):
     if request.method =="POST":
         #获取前端提交过来的数据
@@ -36,10 +65,10 @@ def index(request):
         save_post_data.save()
     return  render(request, 'problem/index.html')
 
-
+@login_required(login_url='/login/')
 def search(request):
     return render(request,'problem/search.html')
-
+@login_required(login_url='/login/')
 def search_list(request):
     if request.method =="POST":
         post_search = request.POST.get('search','null')
@@ -85,14 +114,14 @@ def search_list(request):
         except EmptyPage:
             problem = paginator.page(paginator.num_pages)
         return  render(request,'problem/problem_list.html',{'hostnames':problem})
-
+@login_required(login_url='/login/')
 def week(request):
     daysData = WAMAPage.my_page(request,7)
     if daysData == 0:
         return HttpResponse(u"根据时间日期未检索到最近一周未发生的故障记录，请重新选择或根据具体日期进行搜索")
     else:
         return render(request,'problem/week_list.html',{'hostnames':daysData})
-
+@login_required(login_url='/login/')
 def month(request):
     daysData = WAMAPage.my_page(request,30)
     if daysData == 0:
@@ -101,7 +130,23 @@ def month(request):
         return render(request,'problem/month_list.html',{'hostnames':daysData})
 
 
+def edit(request):
+    if request.method=="POST":
+        post_id = int(request.POST.get('id'))
+        post_hostname = str(request.POST.get('hostname'))
+        post_ipaddress = str(request.POST.get('ipaddress'))
+        post_problem_user = str(request.POST.get('problem_user'))
+        post_problem_time = str(request.POST.get('problem_time'))
+        post_issue = str(request.POST.get('issue'))
+        post_resolve = str(request.POST.get('resolve'))
+        post_status = str(request.POST.get('status'))
+        post_resolve_user = request.user.username
 
+        models.add_problem.objects.filter(id=post_id).update(Hostname=post_hostname,IPaddress=post_ipaddress,ProblemUser=post_problem_user,
+            ProblemTime=post_problem_time,Issue=post_issue, Resolve=post_resolve,
+            ProblemStatus=post_status, ResolveUser=post_resolve_user)
+        print(post_id,post_hostname,post_ipaddress,post_status)
+        return HttpResponse("编辑保存成功")
 
 
 

@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^problem_list', views.search_list,name='problem_list'),
     url(r'^week', views.week,name='week'),
     url(r'^month', views.month,name='month'),
+    url(r'^edit', views.edit,name='edit'),
 ]

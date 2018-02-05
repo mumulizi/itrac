@@ -1,0 +1,62 @@
+<!-- 让include引用的页面，因为故障列表和周、月故障列表里面的table和分页是一样的前端页面，只有一点不同，没必要每个页面都写这些 -->
+     <table id="table" class="table table-bordered table-striped text-center">
+        <thead  class="success">
+                <tr  class="success">
+                    <th hidden="hidden" class="text-center">故障ID</th>
+                    <th class="text-center">主机名</th>
+                    <th class="text-center">IP地址</th>
+                    <th class="text-center" width="6%">报修人员</th>
+                    <th class="text-center">报修时间</th>
+                    <th width="22%" class="text-center">具体问题</th>
+                    <th width="22%" class="text-center">解决办法</th>
+                    <th class="text-center">故障状态</th>
+                    <th class="text-center">处理人</th>
+                    <th class="text-center">操作</th>
+                </tr>
+        </thead>
+            <tbody id="history_income_list" class="table-hover">
+                {% for obj in hostnames %}
+                            <tr>
+                                <td  hidden="hidden">{{ obj.id }}</td>
+                                <td id="{{ obj.id }}">{{ obj.Hostname }}</td>
+                                <td>{{ obj.IPaddress }}</td>
+                                <td>{{ obj.ProblemUser }}</td>
+                                <td>{{ obj.ProblemTime }}</td>
+                                <td>
+                                    <div style="height:60px;overflow-y:scroll;">
+                                        {{ obj.Issue }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="height:60px;overflow-y:scroll;">
+                                        {{ obj.Resolve }}
+                                    </div>
+                                </td>
+                                <td>{{ obj.get_ProblemStatus_display }}</td>
+                                <td>{{ obj.ResolveUser }}</td>
+                                <td id="{{ obj.id }}" class="model-button">
+                                    <button class="btn btn-primary edit-model" data-toggle="modal" data-target="#edit" id="model-button">编辑
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+            </tbody>
+            </table>
+<!--分页-->
+  <div class="pagination pagination-centered">
+	  <div class="pull-right"><span class="label">{{hostnames}}</span></div>
+		<ul>{% if not hostnames.has_previous %}
+			<li class="active"><a>前一页</a></li>
+			{% endif %}
+			{% if hostnames.has_previous %}
+			<li><a href="?page={{ hostnames.previous_page_number }}">前一页</a></li>
+			{% endif %}
+			{% if not hostnames.has_next %}
+			<li class="active"><a>后一页</a></li>
+			{% endif %}
+			{% if hostnames.has_next %}
+			<li><a href="?page={{ hostnames.next_page_number }}">后一页</a></li>
+			{% endif %}
+		</ul>
+	  </div>
+
